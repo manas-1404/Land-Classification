@@ -1,0 +1,3 @@
+[submodule "pysatapi"]
+	path = pysatapi
+	url = https://github.com/manas-1404/pysatapi
