@@ -1,29 +1,50 @@
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
+def setup_data_generators(train_dir, val_dir, test_dir, batch_size=16, target_size=(224, 224)):
+    train_datagen = ImageDataGenerator(
+        rescale=1./255,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True,
+        rotation_range=40,  # More aggressive augmentation
+        width_shift_range=0.2,
+        height_shift_range=0.2,
+        brightness_range=[0.6, 1.4],
+        channel_shift_range=0.2
+    )
 
-# Setup the training data generator
-train_datagen = ImageDataGenerator(
-    rescale=1./255,   # Normalize pixel values to [0,1]
-    shear_range=0.2,  # Randomly apply shearing transformations
-    zoom_range=0.2,   # Randomly zoom image 
-    horizontal_flip=True  # Randomly flip images
-)
+    validation_datagen = ImageDataGenerator(rescale=1./255)
 
-# Setup the validation and test data generators
-test_datagen = ImageDataGenerator(rescale=1./255)  # Only rescale for validation and test sets
+    train_generator = train_datagen.flow_from_directory(
+        train_dir,
+        target_size=target_size,
+        batch_size=batch_size,
+        class_mode='categorical',
+        shuffle=True,
+        workers=4,
+        max_queue_size=10
+    )
 
-# Prepare flow from directory for training
-train_generator = train_datagen.flow_from_directory(
-    r'C:\Users\manas\data\madrid-es\training',  # This is the source directory for training images
-    target_size=(224, 224),  # All images will be resized to 224x224
-    batch_size=32,
-    class_mode='categorical')  # Since we use categorical_crossentropy loss, we need categorical labels
+    validation_generator = validation_datagen.flow_from_directory(
+        val_dir,
+        target_size=target_size,
+        batch_size=batch_size,
+        class_mode='categorical',
+        shuffle=True,
+        workers=4,
+        max_queue_size=10
+    )
 
-# Prepare flow from directory for validation
-validation_generator = test_datagen.flow_from_directory(
-    r'C:\Users\manas\data\madrid-es\evalution',
-    target_size=(224, 224),
-    batch_size=32,
-    class_mode='categorical')
-
-print("Preprocessing of images complete!")
+    test_generator = validation_datagen.flow_from_directory(
+        test_dir,
+        target_size=target_size,
+        batch_size=batch_size,
+        class_mode='categorical',
+        shuffle=False,
+        workers=4,
+        max_queue_size=10
+    )
+    
+    print("\nPreprocessing of images complete!")
+    
+    return train_generator, validation_generator, test_generator
