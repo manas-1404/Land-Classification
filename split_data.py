@@ -63,9 +63,9 @@ def split_data(source_dir, train_dir, val_dir, test_dir, train_size=0.7, val_siz
         copy_images(test_images, test_cls_dir)
 
 # Usage
-source_directory = r'C:\Users\lyq09mow\Data\madrid-es-images\50km'  # Path to the dataset directory
-train_directory = r'C:\Users\lyq09mow\Code\madrid-es\50km\training'
-val_directory = r'C:\Users\lyq09mow\Code\madrid-es\50km\evaluation'
-test_directory = r'C:\Users\lyq09mow\Code\madrid-es\50km\testing'
+source_directory = r'C:\Users\lyq09mow\Data\madrid-es-images\30km'  # Path to the dataset directory
+train_directory = r'C:\Users\lyq09mow\Code\madrid-es\30km\training'
+val_directory = r'C:\Users\lyq09mow\Code\madrid-es\30km\evaluation'
+test_directory = r'C:\Users\lyq09mow\Code\madrid-es\30km\testing'
 
 split_data(source_directory, train_directory, val_directory, test_directory)

@@ -20,9 +20,7 @@ def setup_data_generators(train_dir, val_dir, test_dir, batch_size=16, target_si
         target_size=target_size,
         batch_size=batch_size,
         class_mode='categorical',
-        shuffle=True,
-        workers=4,
-        max_queue_size=10
+        shuffle=True
     )
 
     validation_generator = validation_datagen.flow_from_directory(
@@ -30,9 +28,7 @@ def setup_data_generators(train_dir, val_dir, test_dir, batch_size=16, target_si
         target_size=target_size,
         batch_size=batch_size,
         class_mode='categorical',
-        shuffle=True,
-        workers=4,
-        max_queue_size=10
+        shuffle=True
     )
 
     test_generator = validation_datagen.flow_from_directory(
@@ -40,9 +36,7 @@ def setup_data_generators(train_dir, val_dir, test_dir, batch_size=16, target_si
         target_size=target_size,
         batch_size=batch_size,
         class_mode='categorical',
-        shuffle=False,
-        workers=4,
-        max_queue_size=10
+        shuffle=False
     )
     
     print("\nPreprocessing of images complete!")
