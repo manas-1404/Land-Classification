@@ -144,12 +144,14 @@ def consolidate_UA_classes(gdf, class_col='ITEM'):
     include_classes = ["Green urban areas", 
                     "Airports",
                     "Forests",
-                    "Agricultural + Semi-natural areas + Wetlands",
+                    "Fast transit roads and associated land",
+                    "Railways and associated land",
                     "High Density Urban Fabric", 
                     "Medium Density Urban Fabric", 
                     "Low Density Urban Fabric",
-                    "Water bodies",
+                    "Water",
                     "Sports and leisure facilities",
+                    "Land without current use",
                     "Industrial, commercial, public, military and private units"]
     gdf = gdf[gdf[class_col].isin(include_classes)]
     return gdf

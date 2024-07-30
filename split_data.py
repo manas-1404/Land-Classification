@@ -19,10 +19,13 @@ def split_data(source_dir, train_dir, val_dir, test_dir, train_size=0.7, val_siz
     print("Classes found: ", classes)
 
     if not os.path.exists(train_dir):
+        print("Train Directory Created")
         os.makedirs(train_dir)
     if not os.path.exists(val_dir):
+        print("Validation Directory Created")
         os.makedirs(val_dir)
     if not os.path.exists(test_dir):
+        print("Test Directory Created")
         os.makedirs(test_dir)
 
     for cls in classes:
@@ -63,9 +66,9 @@ def split_data(source_dir, train_dir, val_dir, test_dir, train_size=0.7, val_siz
         copy_images(test_images, test_cls_dir)
 
 # Usage
-source_directory = r'C:\Users\lyq09mow\Data\madrid-es-images\30km'  # Path to the dataset directory
-train_directory = r'C:\Users\lyq09mow\Code\madrid-es\30km\training'
-val_directory = r'C:\Users\lyq09mow\Code\madrid-es\30km\evaluation'
-test_directory = r'C:\Users\lyq09mow\Code\madrid-es\30km\testing'
+source_directory = r'C:\Users\lyq09mow\DataImages\Bar_Ber_Mad_Rom\10class+frankfurt'           # Path to the Image dataset directory
+train_directory = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom_frankfurt\training'
+val_directory = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom_frankfurt\evaluation'
+test_directory = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom_frankfurt\testing'
 
 split_data(source_directory, train_directory, val_directory, test_directory)

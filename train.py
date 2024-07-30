@@ -7,53 +7,85 @@ from preprocess import setup_data_generators
 from resnet import build_resnet_101
 
 # Paths to training, validation, testing data
-train_dir = r'C:\Users\lyq09mow\Code\madrid-es\50km\training'
-val_dir = r'C:\Users\lyq09mow\Code\madrid-es\50km\evaluation'
-test_dir = r'C:\Users\lyq09mow\Code\madrid-es\50km\testing'
-
-new_test_dir = r'C:\Users\lyq09mow\Code\madrid-es\30km\testing'  # New test dataset
-
-# Path to the saved model
-# model_path = r'C:\Users\lyq09mow\Code\madrid_land_model.keras'
-model_path = r'C:\Users\lyq09mow\Code\best_model.keras'
+train_dir = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom_frankfurt\training'
+val_dir = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom_frankfurt\evaluation'
+test_dir = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom_frankfurt\testing'
 
 # Best hyperparameter based on fine-tuning results
 learning_rate = 0.001
 batch_size = 16
-epochs = 100
+epochs = 100  
 
 # Initialize data generators
 train_generator, validation_generator, test_generator = setup_data_generators(train_dir, val_dir, test_dir, batch_size=batch_size)
 
-# Load previous best model
-model = tf.keras.models.load_model(model_path)
+# Path to the saved model
+model_path = r'C:\Users\lyq09mow\Model\Urban_Fabric\pretrained_resnet101.keras'
 
-# Unfreeze more layers for fine-tuning
-for layer in model.layers[-50:]:
+checkpoint_path = r'C:\Users\lyq09mow\Model\Urban_Fabric\pretrained_resnet101_best_model_fulltrainable.keras'
+
+
+# Load previous best model if exists
+try:
+    model = tf.keras.models.load_model(model_path)
+    print("Loaded model from checkpoint.")
+except:
+    print("No checkpoint found, starting from scratch.")
+
+for layer in model.layers[:]:
+    layer.trainable = False
+
+# Total number of layers
+total_layers = len(model.layers)
+print("Total number of layers:", total_layers)
+
+# # Calculate the middle index
+middle_index = total_layers // 2
+
+# Calculate the starting and ending index for the middle 60 layers
+start_index = middle_index - 30
+end_index = middle_index + 30
+print("Middle 60 layers range from index", start_index, "to", end_index)
+
+# Unfreeze some layers for further training
+for layer in model.layers[:]:
     layer.trainable = True
 
 # Compile the model with the best hyperparameters
-model.compile(optimizer=Adam(learning_rate=0.0001),
+model.compile(optimizer=Adam(learning_rate=learning_rate),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
 # Define callbacks
-checkpoint = ModelCheckpoint(r'C:\Users\lyq09mow\Code\madrid_land_model.keras', monitor='val_accuracy', save_best_only=True, verbose=1)
+checkpoint = ModelCheckpoint(checkpoint_path, monitor='val_loss', save_best_only=True, verbose=1)
 early_stop = EarlyStopping(monitor='val_loss', patience=10, verbose=1)
-reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, min_lr=0.00001, verbose=1)
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, min_lr=0.00000001, verbose=1)
 tqdm_callback = TqdmCallback(verbose=1)
+
+# Determine the initial epoch
+initial_epoch = 0
+try:
+    with open(r'C:\Users\lyq09mow\Model\Urban_Fabric\initial_epoch.txt', 'r') as f:
+        initial_epoch = int(f.read().strip()) + 1
+except:
+    pass
 
 # Train the model
 history = model.fit(
     train_generator,
+    initial_epoch=initial_epoch,
     epochs=epochs,
     validation_data=validation_generator,
     callbacks=[checkpoint, early_stop, reduce_lr, tqdm_callback],
     verbose=1
 )
 
+# Save the current epoch
+with open(r'C:\Users\lyq09mow\Model\Urban_Fabric\initial_epoch.txt', 'w') as f:
+    f.write(str(epochs - 1))
+
 # Save the entire model for later use
-model.save(f'C:\\Users\\lyq09mow\\Code\\madrid_land_model_lr{learning_rate}_bs{batch_size}_ep{epochs}.keras')
+model.save(f'C:\\Users\\lyq09mow\\Model\\Urban_Fabric\\bar_ber_mad_rom_urban_fabric_model_lr{learning_rate}_bs{batch_size}_ep{epochs}.keras')
 
 # Setup test data generators
 def setup_test_data_generator(test_dir, batch_size=16, target_size=(224, 224)):
@@ -70,18 +102,11 @@ def setup_test_data_generator(test_dir, batch_size=16, target_size=(224, 224)):
     return test_generator
 
 test_generator = setup_test_data_generator(test_dir, batch_size=16)
-new_test_generator = setup_test_data_generator(new_test_dir, batch_size=16)
 
 # Verify the class indices
 print("Test Generator Class Indices:", test_generator.class_indices)
-print("New Test Generator Class Indices:", new_test_generator.class_indices)
 
 # Evaluate the model using the test data generator
 test_loss, test_accuracy = model.evaluate(test_generator)
 print(f"Test Loss: {test_loss}")
 print(f"Test Accuracy: {test_accuracy}")
-
-# Evaluate the model using the new test data generator
-new_test_loss, new_test_accuracy = model.evaluate(new_test_generator)
-print(f"New Test Loss: {new_test_loss}")
-print(f"New Test Accuracy: {new_test_accuracy}")

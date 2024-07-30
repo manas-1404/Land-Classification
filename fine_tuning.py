@@ -11,18 +11,18 @@ from resnet import build_resnet_101
 # Assuming the 'setup_data_generators' function and 'build_resnet_50' are correctly defined/imported.
 
 # Paths to training and validation data
-train_dir = r'C:\Users\lyq09mow\Code\madrid-es\50km\training'
-val_dir = r'C:\Users\lyq09mow\Code\madrid-es\50km\evaluation'
-test_dir = r'C:\Users\lyq09mow\Code\madrid-es\50km\testing'
+train_dir = r'C:\Users\lyq09mow\ModelImages\Urban_Fabric\training'         
+val_dir = r'C:\Users\lyq09mow\ModelImages\Urban_Fabric\evaluation'
+test_dir = r'C:\Users\lyq09mow\ModelImages\Urban_Fabric\testing'
 
 # Path to the saved model
-model_path = r'C:\Users\lyq09mow\Code\best_model.keras'
+model_path = r'C:\Users\lyq09mow\Model\Urban_Fabric\pretrained_resnet101_barcelona_berlin_madrid_20unfreezed_best_model.keras'
 
 # Initialize data generators
 train_generator, validation_generator, test_generator = setup_data_generators(train_dir, val_dir, test_dir)
 
 # Define hyperparameter grid
-learning_rates = [0.001, 0.0001]
+learning_rates = [0.001, 0.0001, 0.00001]
 batch_sizes = [16, 32]
 epochs_list = [50, 100]
 
@@ -37,9 +37,9 @@ def train_and_evaluate(learning_rate, batch_size, epochs):
                   metrics=['accuracy'])
 
     # Define callbacks
-    checkpoint = ModelCheckpoint(model_path, monitor='val_accuracy', save_best_only=True, verbose=0)
+    checkpoint = ModelCheckpoint(r'C:\Users\lyq09mow\Model\Urban_Fabric\fine_tuning_results\best_model_bar_ber_mad.keras', monitor='val_accuracy', save_best_only=True, verbose=0)
     early_stop = EarlyStopping(monitor='val_loss', patience=10, verbose=0)
-    reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, min_lr=0.00001, verbose=1)
+    reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=5, min_lr=0.0000001, verbose=1)
     tqdm_callback = TqdmCallback(verbose=1)
 
     # Train the model
@@ -52,7 +52,7 @@ def train_and_evaluate(learning_rate, batch_size, epochs):
     )
 
     # Save the entire model for later use
-    model.save(f'C:\\Users\\lyq09mow\\Code\\madrid_land_model_lr{learning_rate}_bs{batch_size}_ep{epochs}.keras')
+    model.save(f'C:\\Users\\lyq09mow\\Model\\Urban_Fabric\\Fine_Tuning\\madrid_land_model_lr{learning_rate}_bs{batch_size}_ep{epochs}.keras')
 
     # Evaluate the model using the test data generator
     test_loss, test_accuracy = model.evaluate(test_generator)
@@ -72,13 +72,3 @@ for result in results:
     print(f"lr={result[0]}, batch_size={result[1]}, epochs={result[2]}, Test Loss={result[3]}, Test Accuracy={result[4]}")
 
 
-
-# Hyperparameter Fine Tuning results
-# lr=0.001, batch_size=16, epochs=50, Test Loss=0.7245725989341736, Test Accuracy=0.7755259871482849
-# lr=0.001, batch_size=16, epochs=100, Test Loss=0.7029247283935547, Test Accuracy=0.794634222984314
-# lr=0.001, batch_size=32, epochs=50, Test Loss=0.8501923680305481, Test Accuracy=0.709708571434021
-# lr=0.001, batch_size=32, epochs=100, Test Loss=0.8003213405609131, Test Accuracy=0.72881680727005
-# lr=0.0001, batch_size=16, epochs=50, Test Loss=0.7025255560874939, Test Accuracy=0.7822813987731934
-# lr=0.0001, batch_size=16, epochs=100, Test Loss=0.7107123732566833, Test Accuracy=0.7788071632385254
-# lr=0.0001, batch_size=32, epochs=50, Test Loss=0.7166960835456848, Test Accuracy=0.7764910459518433
-# lr=0.0001, batch_size=32, epochs=100, Test Loss=0.7175022959709167, Test Accuracy=0.7768770456314087
