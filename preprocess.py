@@ -19,6 +19,7 @@ def setup_data_generators(train_dir, val_dir, test_dir, batch_size=16, target_si
         batch_size=batch_size,
         class_mode='categorical',
         shuffle=True
+        shuffle=True
     )
 
     validation_generator = validation_datagen.flow_from_directory(
@@ -27,6 +28,7 @@ def setup_data_generators(train_dir, val_dir, test_dir, batch_size=16, target_si
         batch_size=batch_size,
         class_mode='categorical',
         shuffle=True
+        shuffle=True
     )
 
     test_generator = validation_datagen.flow_from_directory(
@@ -34,6 +36,7 @@ def setup_data_generators(train_dir, val_dir, test_dir, batch_size=16, target_si
         target_size=target_size,
         batch_size=batch_size,
         class_mode='categorical',
+        shuffle=False
         shuffle=False
     )
     

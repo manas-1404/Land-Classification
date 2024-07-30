@@ -1,7 +1,9 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau
+from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau
 from tqdm.keras import TqdmCallback
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from preprocess import setup_data_generators
 from resnet import build_resnet_101
@@ -17,6 +19,7 @@ batch_size = 16
 epochs = 100  
 
 # Initialize data generators
+train_generator, validation_generator, test_generator = setup_data_generators(train_dir, val_dir, test_dir, batch_size=batch_size)
 train_generator, validation_generator, test_generator = setup_data_generators(train_dir, val_dir, test_dir, batch_size=batch_size)
 
 # Path to the saved model
