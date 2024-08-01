@@ -1,3 +1,7 @@
 [submodule "pysatapi"]
 	path = pysatapi
 	url = https://github.com/manas-1404/pysatapi
+
+[submodule "pysatml"]
+	path = pysatml
+	url = https://github.com/manas-1404/pysatml
