@@ -3,12 +3,14 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # Path to the saved model
-model_path = r'C:\Users\lyq09mow\Model\Urban_Fabric\85cent8.keras'
+# model_path = r'C:\Users\lyq09mow\Model\Urban_Fabric\85cent8.keras'
 
-# model_path = r'C:\Users\lyq09mow\Model\Bar_Ber_Mad_Rom\initial30.keras'
+model_path = r'C:\Users\lyq09mow\Model\Bar_Ber_Mad_Rom\85cent2_frankfurt.keras'
 
 # Paths to the test data
-test_dir = r'C:\Users\lyq09mow\ModelImages\Urban_Fabric\testing'
+# test_dir = r'C:\Users\lyq09mow\ModelImages\Urban_Fabric\testing'
+
+test_dir = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom_frankfurt\testing'
 
 new_test_dir1 = r'C:\Users\lyq09mow\ModelImages\berlin-de\25km_modification\testing' 
 
