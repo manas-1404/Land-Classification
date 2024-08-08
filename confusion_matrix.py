@@ -7,7 +7,7 @@ import seaborn as sns
 from preprocess import setup_data_generators
 
 # Load the pre-trained model
-model = load_model(r'C:\Users\lyq09mow\Model\Urban_Fabric\83cent4_best_model_120layer_bar_ber_mad.keras')
+model = load_model(r'C:\Users\lyq09mow\Model\Urban_Fabric\86cent7_last25.keras')
 
 # Paths to test data
 train_dir = r'C:\Users\lyq09mow\ModelImages\Urban_Fabric\training'

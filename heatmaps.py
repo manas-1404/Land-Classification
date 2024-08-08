@@ -8,10 +8,10 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import backend as K
 
 # Load your pre-trained model
-model = load_model(r'C:\Users\lyq09mow\Model\Berlin_Madrid\pretrained_resnet101_best_model.keras')
+model = load_model(r'C:\Users\lyq09mow\Model\Bar_Ber_Mad_Rom\85cent2_frankfurt.keras')
 
 # Set up the directories for the datasets
-test_dir = r'C:\Users\lyq09mow\ModelImages\Berlin_Madrid\testing'
+test_dir = r'C:\Users\lyq09mow\ModelImages\Bar_Ber_Mad_Rom\testing'
 
 # ImageDataGenerator for testing, no augmentation is used here
 test_datagen = ImageDataGenerator(rescale=1./255)
