@@ -2,15 +2,19 @@
 
 This project involves training a deep learning model to perform land classification using the Urban Atlas dataset. The model utilizes architectures such as ResNet101 and ResNet50, based on methodologies from an external research paper.
 
-## Relevant Links
+## References
 - **Research Paper:** [Using convolutional networks and satellite imagery to identify patterns in urban environments at a large scale](https://arxiv.org/abs/1704.02965)
 - **GitHub Repository:** [urban-environments](https://github.com/adrianalbert/urban-environments)
-- **Research Paper Access:** [urban-environments](https://github.com/adrianalbert/urban-environments)
 
-## Dataset
+## Dataset Sources
 
 1. **Urban Atlas**: [Urban Atlas Data](https://www.eea.europa.eu/en/datahub/datahubitem-view/e006507d-15c8-49e6-959c-53b61facd873)
 2. **Download Satellite Images**: [Google Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview)
+
+## Requirements
+The project requires you to use certain custom-made packages for downloading the datasets and processing them. These packages are 7 years old with all of the code present in the deprecated Python2 version and there's no community to support & develop the packages. I updated the packages to newer Python3 version which is compatible with the current project.  
+1. Pysatapi: [pysatapi](https://github.com/manas-1404/pysatapi) Advisable to install the package directly through the master branch and appending it to the Python path in case of 'ModuleNotFoundError'. (Implementation provided in `Pipeline_to_acquire_satellite_imagery_from_google_maps.ipynb`)
+2. Pysatml: 
 
 ## Dataset Processing
 
