@@ -13,20 +13,12 @@ This project involves training a deep learning model to perform land classificat
 
 ## Custom Packages Requirements
 The project requires you to use certain custom-made packages for downloading the datasets and processing them. These packages are 7 years old with all of the code present in the deprecated Python2 version and there's no community to support & develop the packages. I updated the packages to newer Python3 version which is compatible with the current project.  
-1. Pysatapi: [pysatapi](https://github.com/manas-1404/pysatapi) - Advisable to install the package directly through the master branch and appending it to the Python path in case of 'ModuleNotFoundError'. (Implementation provided in `Pipeline_to_acquire_satellite_imagery_from_google_maps.ipynb`)
-2. Pysatml: [pysatml](https://github.com/manas-1404/pysatml) - Advisable to install the package directly through the master branch and appending it to the Python path in case of 'ModuleNotFoundError'. In case, you face gdal 'ModuleNotFoundError' error then make sure to import it like this 'from osgeo import gdal, osr, gdalconst'.
 
-## Virtual environment set-up
-The project can be easily replicated with the help of a conda virtual environment. Based on my system configuration, I have decided to use Python 3.9 version. 
+1. [pysatapi](https://github.com/manas-1404/pysatapi) - Advisable to install the package directly through the master branch and appending it to the Python path in case of 'ModuleNotFoundError'. (Implementation provided in `Pipeline_to_acquire_satellite_imagery_from_google_maps.ipynb`)
 
-1. Install miniconda easily from the official [Miniconda installation guide](https://docs.anaconda.com/miniconda/)
-2. Open the miniconda prompt. 
-3. Navigate to the project directory /Land-Classification
-3. Set-up the virtual environment using "conda create --name landClassification python=3.9"
-4. Activate the virtual environment using "conda activate landClassification"
-5. You can deactivate it later with the following command "conda deactivate"
+2. [pysatml](https://github.com/manas-1404/pysatml) - Advisable to install the package directly through the master branch and appending it to the Python path in case of 'ModuleNotFoundError'. In case, you face gdal 'ModuleNotFoundError' error then make sure to import it like this 'from osgeo import gdal, osr, gdalconst'.
 
-## Virtual environment set-up
+## Virtual environment Setup
 The project can be easily replicated with the help of a conda virtual environment. Based on my system configuration, I have decided to use Python 3.9 version. 
 
 1. Install miniconda easily from the official [Miniconda installation guide](https://docs.anaconda.com/miniconda/)
@@ -44,20 +36,28 @@ The project can be easily replicated with the help of a conda virtual environmen
     <pre><code id="code1">conda activate landClassification</code></pre>
 
 6. You can deactivate it later with the following command:
-    \```bash
-    conda create --name landClassification python=3.9
-    \```
+    <button onclick="copyToClipboard('#code1')"></button>
+    <pre><code id="code1">conda deactivate</code></pre>
 
 
-## Tensorflow requirements for set-up
+## Tensorflow Setup
 Installing tensorflow in older versions of windows (Windows native: Windows 7 or higher (64-bit)) was the biggest hassle. The easiest way to install tensorflow with GPU support is by utilizing Miniconda. It is also the easiest way to install the required software (cuDNN and CUDA) especially for the GPU setup.
 
 It is very important to ensure that your tensorflow version is always compatible with the python version, cuDNN, CUDA versions. You can check the complete [compatibility list](https://www.tensorflow.org/install/source#gpu)
 
-1. Activate the conda virtual environment by using "conda activate <name of virtual environment>
+1. Activate the conda virtual environment by using:
+    <button onclick="copyToClipboard('#code1')"></button>
+    <pre><code id="code1">conda activate landClassification</code></pre>
+
 2. Install [NVIDIA GPU](https://www.nvidia.com/Download/index.aspx) driver based on your system's GPU specifications.
-3. Install CUDA and cuDNN with the help of conda "conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0". If you are replicating this project, then you can directly install the CUDA and cuDNN versions mentioned earlier.
-4. Install the tensorflow version which is COMPATIBLE with CUDA, cuDNN, and your Python version. If you are replicating this project, then you can directly install tensorflow 2.10 version with "pip install tensorflow==2.10".
+
+3. Install CUDA and cuDNN with the help of the following command. If you are replicating this project, then you can directly install the CUDA and cuDNN versions mentioned below.
+    <button onclick="copyToClipboard('#code1')"></button>
+    <pre><code id="code1">conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0</code></pre>
+
+4. Install the tensorflow version which is COMPATIBLE with CUDA, cuDNN, and your Python version. If you are replicating this project, then you can directly install tensorflow 2.10 version below.
+    <button onclick="copyToClipboard('#code1')"></button>
+    <pre><code id="code1">pip install tensorflow==2.10</code></pre>
 
 If you are not installing the above mentioned versions of tensorflow, then I'd highly recommend you check out the official [tensorflow installation guide](https://www.tensorflow.org/install/pip#windows-wsl2_1)
 
