@@ -110,6 +110,7 @@ A complete list of modules and their versions used for this project is present i
 
 The following is the directory structure of the project:
 
+```
 Land-Classification/
 │
 ├── images/                                         # Directory containing images used in this repository 
@@ -154,7 +155,7 @@ Land-Classification/
 ├── README.md                                       # Project description and instructions
 │
 └── requirements.txt                                # Python dependencies file
-
+```
 
 
 
