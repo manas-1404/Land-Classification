@@ -49,18 +49,3 @@ print(f"Dataset Name: {test_dir}")
 print(f"Test Loss: {test_loss}")
 print(f"Test Accuracy: {test_accuracy}")
 
-# Evaluate the model using the new test data generator
-# print("#"*50)
-# new_test_loss1, new_test_accuracy1 = model.evaluate(new_test_generator1)
-# print(f"Dataset Name: {new_test_dir1}")
-# print(f"New Test Loss: {new_test_loss1}")
-# print(f"New Test Accuracy: {new_test_accuracy1}")
-
-
-# Evaluate the model using the new test data generator
-# print("#"*50)
-# new_test_loss2, new_test_accuracy2 = model.evaluate(new_test_generator2)
-# print(f"Dataset Name: {new_test_dir2}")
-# print(f"New Test Loss: {new_test_loss2}")
-# print(f"New Test Accuracy: {new_test_accuracy2}")
-

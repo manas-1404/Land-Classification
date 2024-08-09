@@ -61,6 +61,11 @@ It is very important to ensure that your tensorflow version is always compatible
 
 If you are not installing the above mentioned versions of tensorflow, then I'd highly recommend you check out the official [tensorflow installation guide](https://www.tensorflow.org/install/pip#windows-wsl2_1)
 
+## Other Requirements
+A complete list of modules and their versions used for this project is present in the `requirements.txt`. You can simply download them on your own or install all of them at once in your virtual environment. 
+    <button onclick="copyToClipboard('#code1')"></button>
+    <pre><code id="code1">pip install -r requirements.txt</code></pre>
+
 ## Dataset Processing
 
 1. Download and unzip the dataset for a specific city region, locating the `.gpkg` file.
@@ -100,6 +105,61 @@ If you are not installing the above mentioned versions of tensorflow, then I'd h
    ![Classification-Webapp](<images/classification-image.jpeg>)
 2. For predicting classifications over larger areas like cities, use `Pipeline_model_predictions.ipynb`.
    ![Spatial Distribution of Kaiserslautern](<images/Spatial%20Distribution%20of%20Predicted%20Classes%20for%20Kaiserslautern.png>)
+
+## Directory Structure
+
+The following is the directory structure of the project:
+
+Land-Classification/
+│
+├── images/                                         # Directory containing images used in this repository 
+│
+├── src/                                            # Source code directory
+│   ├── data_collection/                            # Directory for data collection scripts or modules
+│   │   ├── Pipeline_to_acquire_satellite_imagery_from_google_maps.ipynb          # Jupyter notebook for acquiring satellite images
+│   │   ├── Pipeline_to_create_datasets.ipynb                                     # Jupyter notebook for creating datasets
+│   │   └──urbanatlas.py                           # Framework for GIS urban atlas 
+│   │
+│   ├── prediction_collection/ # Directory for prediction scripts or modules
+│   │   ├── Pipeline_for_heatmaps.ipynb # Jupyter notebook for generating heatmaps
+│   │   └── Pipeline_model_predictions.ipynb # Jupyter notebook for making model predictions
+│   │
+│   └── training_collection/                        # Directory for training scripts or modules
+│       ├── clear_session.py                        # Script to clear TensorFlow/Keras sessions
+│       ├── confusion_matrix.py                     # Script to generate confusion matrices
+│       ├── custom_fine_tuning.py                   # Script for custom fine-tuning of models
+│       ├── fine_tuning.py                          # General script for fine-tuning models
+│       ├── heatmaps.py                             # Script for generating heatmaps
+│       ├── Pipeline_model_validation_and_analysis.ipynb        # Jupyter notebook for model validation and analysis
+│       ├── preprocess.py                           # Script for data preprocessing
+│       ├── pretrained-resnet50.py                  # Script to load/use a pre-trained ResNet50 model
+│       ├── pretrained-resnet101.py                 # Script to load/use a pre-trained ResNet101 model
+│       ├── resnet.py                               # Script to build custom ResNet models
+│       ├── script.bat                              # Batch script for automating training tasks
+│       ├── script1.py                              # Script for unfreezing intial layers of a resnet model
+│       ├── script2.py                              # Script for unfreezing middle layers of a resnet model
+│       ├── script3.py                              # Script for unfreezing final layers of a resnet model
+│       ├── split_data.py                           # Script to split data into training/validation/testing sets
+│       ├── test.py                                 # Script for testing models
+│       ├── train.py                                # Training script
+│       ├── train_model.py                          # Training script with model performance graphs 
+│       └── vgg16.py                                # Script to load/use a VGG16 model
+│
+├── .gitignore                                      # Git ignore file
+│
+├── .gitmodules                                     # Git submodule configuration file
+│
+├── classes.pickle.gz                               # Serialized classes mapping file 
+│
+├── README.md                                       # Project description and instructions
+│
+└── requirements.txt                                # Python dependencies file
+
+
+
+
+
+
 
 <!-- 
 ### 2. HTML and JavaScript Section
