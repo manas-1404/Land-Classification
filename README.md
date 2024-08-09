@@ -33,10 +33,8 @@ The project can be easily replicated with the help of a conda virtual environmen
 2. Open the miniconda prompt. 
 3. Navigate to the project directory `/Land-Classification`
 4. Set-up the virtual environment using:
-
-   ```bash
-<button onclick="copyToClipboard('#code1')"></button>
-<pre><code id="code1">conda create --name landClassification python=3.9</code></pre>
+    <button onclick="copyToClipboard('#code1')"></button>
+    <pre><code id="code1">conda create --name landClassification python=3.9</code></pre>
 
 
 ## Tensorflow requirements for set-up
