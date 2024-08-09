@@ -26,6 +26,20 @@ The project can be easily replicated with the help of a conda virtual environmen
 4. Activate the virtual environment using "conda activate landClassification"
 5. You can deactivate it later with the following command "conda deactivate"
 
+## Virtual environment set-up
+The project can be easily replicated with the help of a conda virtual environment. Based on my system configuration, I have decided to use Python 3.9 version. 
+
+1. Install miniconda easily from the official [Miniconda installation guide](https://docs.anaconda.com/miniconda/)
+2. Open the miniconda prompt. 
+3. Navigate to the project directory `/Land-Classification`
+4. Set-up the virtual environment using:
+
+   ```bash
+conda create --name landClassification python=3.9
+<button onclick="copyToClipboard('#code1')">Copy Command</button>
+<pre><code id="code1">conda create --name landClassification python=3.9</code></pre>
+```
+
 ## Tensorflow requirements for set-up
 Installing tensorflow in older versions of windows (Windows native: Windows 7 or higher (64-bit)) was the biggest hassle. The easiest way to install tensorflow with GPU support is by utilizing Miniconda. It is also the easiest way to install the required software (cuDNN and CUDA) especially for the GPU setup.
 
@@ -77,3 +91,16 @@ If you are not installing the above mentioned versions of tensorflow, then I'd h
    ![Classification-Webapp](<images/classification-image.jpeg>)
 2. For predicting classifications over larger areas like cities, use `Pipeline_model_predictions.ipynb`.
    ![Spatial Distribution of Kaiserslautern](<images/Spatial%20Distribution%20of%20Predicted%20Classes%20for%20Kaiserslautern.png>)
+
+
+### 2. HTML and JavaScript Section
+```html
+<script>
+function copyToClipboard(element) {
+  var copyText = document.querySelector(element).innerText;
+  navigator.clipboard.writeText(copyText).then(() => {
+    alert('Copied to clipboard');
+  });
+}
+</script>
+```
