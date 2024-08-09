@@ -30,11 +30,23 @@ The project can be easily replicated with the help of a conda virtual environmen
 The project can be easily replicated with the help of a conda virtual environment. Based on my system configuration, I have decided to use Python 3.9 version. 
 
 1. Install miniconda easily from the official [Miniconda installation guide](https://docs.anaconda.com/miniconda/)
+
 2. Open the miniconda prompt. 
+
 3. Navigate to the project directory `/Land-Classification`
+
 4. Set-up the virtual environment using:
     <button onclick="copyToClipboard('#code1')"></button>
     <pre><code id="code1">conda create --name landClassification python=3.9</code></pre>
+
+5. Activate the virtual environment using:
+    <button onclick="copyToClipboard('#code1')"></button>
+    <pre><code id="code1">conda activate landClassification</code></pre>
+
+6. You can deactivate it later with the following command:
+    \```bash
+    conda create --name landClassification python=3.9
+    \```
 
 
 ## Tensorflow requirements for set-up
@@ -89,7 +101,7 @@ If you are not installing the above mentioned versions of tensorflow, then I'd h
 2. For predicting classifications over larger areas like cities, use `Pipeline_model_predictions.ipynb`.
    ![Spatial Distribution of Kaiserslautern](<images/Spatial%20Distribution%20of%20Predicted%20Classes%20for%20Kaiserslautern.png>)
 
-
+<!-- 
 ### 2. HTML and JavaScript Section
 ```html
 <script>
@@ -100,4 +112,4 @@ function copyToClipboard(element) {
   });
 }
 </script>
-```
+``` -->
