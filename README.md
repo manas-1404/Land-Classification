@@ -35,10 +35,9 @@ The project can be easily replicated with the help of a conda virtual environmen
 4. Set-up the virtual environment using:
 
    ```bash
-conda create --name landClassification python=3.9
-<button onclick="copyToClipboard('#code1')">Copy Command</button>
+<button onclick="copyToClipboard('#code1')"></button>
 <pre><code id="code1">conda create --name landClassification python=3.9</code></pre>
-```
+
 
 ## Tensorflow requirements for set-up
 Installing tensorflow in older versions of windows (Windows native: Windows 7 or higher (64-bit)) was the biggest hassle. The easiest way to install tensorflow with GPU support is by utilizing Miniconda. It is also the easiest way to install the required software (cuDNN and CUDA) especially for the GPU setup.
